@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="javascripts/highlight/styles/default.css" media="screen">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Htmlcss by alekskorovin</title>
+</head>
+
+<body>
+<header>
+    <div class="inner">
+        <h1>Псевдо-классы, псевдо-элементы, флоаты, позиционирование. Практика.</h1>
+        <a href="https://github.com/alekskorovin/html-css-practice-1/" class="button">
+            <small>открыть на</small>
+            GitHub</a>
+    </div>
+</header>
+
+<div id="content-wrapper">
+    <div class="inner clearfix">
+        <section id="main-content">
+            <h2>
+                <a id="practice" class="anchor" href="#practice" aria-hidden="true"><span aria-hidden="true"
+                                                                                          class="octicon octicon-link"></span>Практика.</a>
+            </h2>
+            <div class="task">
+                <h3>Задание #1</h3>
+                <ol>
+                    <li>Скачать на рабочий стол <a href="mobi.zip">архив "mobi"</a> и разархивировать его &mdash; в дальнейшем мы будем работать с этой заготовкой.</li>
+                    <li>
+                        <a href="fonts/OpenSans-Regular.ttf">Cкачать шрифт OpenSans-Regular.ttf</a> и установить его:<br />
+
+                    </li>
+                    <li>
+                        Скачать на рабочий стол и открыть <a href="mobi-home-desktop.psd">PSD-макет "mobi-home-desktop.psd"</a> в Photoshop-e.<br />
+                        <img src="images/psd-1.png" alt="Открытый PSD" />
+                    </li>
+                </ol>
+            </div>
+            <p>
+                В PSD-макете мы можем видеть дизайн а так же мы можем использовать его чтобы:
+            </p>
+            <ul>
+                <li>
+                    Увидеть шрифты которые используются в дизайне.
+                </li>
+                <li>
+                    Взять все необходимые размеры, включая отступы, размеры шрифта, высоту строки и прочее.
+                </li>
+                <li>
+                    Взять все цвета и перенести их в CSS-код.
+                </li>
+                <li>
+                    Экспортировать все необходимые изображения.
+                </li>
+                <li>
+                    Скопировать весь текст который используется в макете.
+                </li>
+            </ul>
+            <h3>Декомпозиция макета</h3>
+            <p>
+                Если говорить о базовой структуре страницы, то можно выделить следующие независимые компоненты:
+            </p>
+            <img src="images/psd-decomposition.png" alt="Декомпозиция на компоненты" />
+            <ul>
+                <li><b>header</b> &mdash; верхняя часть сайта, хедер, область содержащая логотип и список ссылок.</li>
+                <li><b>carousel</b> &mdash; компонент содержащий список слайдов и навигацию между слайдами.</li>
+                <li><b>features</b> &mdash; список особенностей продукта.</li>
+                <li><b>content</b> &mdash; описание продукта.</li>
+                <li><b>footer</b> &mdash; футер, подвал, область где размещаются копирайты (информация о владельцах этого сайта), дополнительная навигация.</li>
+            </ul>
+            <p>
+                Компоненты идущие между хедером и футером обычно объединяют одним контейнером с названием "main".
+            </p>
+            <p>
+                Давайте сделаем общую структуру и вместо компонентов просто добавим временные картинки с их изображением.
+            </p>
+            <div class="task">
+                <h3>Задание #2</h3>
+                <ol>
+                    <li>Открыть в папке <b>mobi</b> файл <b>index.html</b> с помощью редактора и добавить в элемент <b>body</b> следующий HTML-код:
+<pre><code class="html">    &lt;div class="header"&gt;&lt;/div&gt;
+    &lt;div class="main"&gt;
+        &lt;div class="carousel"&gt;&lt;/div&gt;
+        &lt;div class="features"&gt;&lt;/div&gt;
+        &lt;div class="content"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;&lt;/div&gt;
+</code></pre>
+                        <p>
+                            Мы добавили контейнеры для наших компонентов. Теперь давайте добавим внутрь контейнеров изображения этих компонентов.
+                        </p>
+                    </li>
+                    <li>
+                        В Photoshop-e в открытом PSD-макете нажать клавишу <b>М</b> (режим прямоугольного выделения) и выделить область хедера потянув с левого верхнего угла до правого нижнего.<br />
+                        <img src="images/copy-picture-of-header.png" alt="Выделяем нужную область" /><br />
+                        Затем:
+                        <ul>
+                            <li>нажать <b>Ctrl Shift C</b> (копировать в буфер объединённые слои).</li>
+                            <li>нажать <b>Ctrl N</b> (создать новый документ) и задать ему имя <b>header</b><br />
+                                <img src="images/create-new-file-header.png" alt="Создать новый файл с именем header" />
+                            </li>
+                            <li>
+                                нажать <b>Ctrl V</b> (вставить из буфера изображение)<br />
+                                <img src="images/paste-header.png" alt="Вставить header" />
+                            </li>
+                            <li>
+                                нажать <b>Ctrl Alt Shift S</b> (сохранить изображения для Веб)<br />
+                                <img src="images/save-header.png" alt="Сохранить для веб" />
+                                выбрать <b>PNG-24</b> и нажать кнопку <b>Save...</b> (сохранить).
+                            </li>
+                            <li>
+                                сохранить изображение в подпапке <b>img</b> вашей папки <b>mobi</b> с названием <b>header.png</b>.
+                            </li>
+                        </ul>
+                        Теперь давайте добавим это изображение внутрь элемента <b>div</b> с классом <b>header</b>.
+                    </li>
+                    <li>
+                        Открыть <b>index.html</b> в редакторе кода и обновить то что внутри <b>body</b>:
+<pre><code class="html">    &lt;div class="header"&gt;&lt;img src="img/header.png" /&gt;&lt;/div&gt;
+    &lt;div class="main"&gt;
+        &lt;div class="carousel"&gt;&lt;/div&gt;
+        &lt;div class="features"&gt;&lt;/div&gt;
+        &lt;div class="content"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer"&gt;&lt;/div&gt;
+</code></pre>
+                    </li>
+                    <li>
+                        Открыть <b>index.html</b> в браузере.
+                    </li>
+                    <li>
+                        Проделать тоже самое для:
+                        <ul>
+                            <li>carousel</li>
+                            <li>features</li>
+                            <li>content</li>
+                            <li>footer</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Если возникли проблемы с копированием и сохранением изображений, вот ссылки на сохранённые изображения:
+            </p>
+            <ul>
+                <li><a href="images/header.png">header.png</a></li>
+                <li><a href="images/carousel.png">carousel.png</a></li>
+                <li><a href="images/features.png">features.png</a></li>
+                <li><a href="images/content.png">content.png</a></li>
+                <li><a href="images/footer.png">footer.png</a></li>
+            </ul>
+            <p>В итоге после добавления всех изображений, HTML страница в браузере должна выглядеть так:</p>
+            <img src="images/fake-page.png" alt="Страница с изображениями компонентов" />
+            <p><strong>Какие из этих компонентов мы можем сверстать?</strong></p>
+            <p>Попробуем сверстать два нижних компонента &mdash; <b>footer</b> и <b>content</b>.</p>
+            <h4>footer</h4>
+            <h5>HTML</h5>
+            <p>
+                Очевидно что в блоке <b>footer</b> находится параграф с текстом.
+            </p>
+            <div class="task">
+                <h3>Задание #3</h3>
+                <ol>
+                    <li>Открыть Photoshop с открытым PSD-файлом и скопировать текст из слоя с названием <b>Copyright © 2016</b>.</li>
+                    <li>
+                        Чтобы выделять одним кликом по тексту нужный слой в Photoshop-е следует выствить галочку <b>Автовыбор - Слой</b><br/>
+                        <img src="images/autoselect-layer.png" alt="Автовыбор слоя" /><br />
+                        После чего нажать <b>V</b> (режим выбора слоя)  и кликнуть на сам текст<br />
+                        При этом в панели <b>Слои</b> должен выделиться слой с текстом.<br />
+                        <img src="images/selected-text-layer.png" alt="Выделенный слой с текстом" />
+                    </li>
+                    <li>
+                        Сделать двойной клик на значке <b>T</b> чтобы выделить текст<br />
+                        <img src="images/select-text-in-the-text-layer.png" alt="Выделить текст в текстовом поле" />
+                    </li>
+                    <li>
+                        Если появилось сообщение о том, что отсутствует шрифт <b>OpenSans</b><br />
+                        <img src="images/font-replace.png" alt="Замена шрифта" /><br />
+                        Вернуться к заданию #1, установить шрифт, закрыть Photoshop и открыть его снова и октрыть в нём PSD-файл.
+                    </li>
+                    <li>
+                        Когда текст выделился, скопировать его в буфер обмена<br />
+                        <img src="images/footer-text-selected.png" alt="" />
+                    </li>
+                    <li>
+                        Открыть <b>index.html</b> в редакторе кода и заменить изображением в блоке с классом <b>footer</b> <code class="html">&lt;img src="img/footer.png" /&gt;</code> на
+                        параграф <code class="html">&lt;p&gt;&lt;/p&gt;</code>.
+                    </li>
+                    <li>
+                        Вставить из буфера текст внутрь параграфа: <code class="html">&lt;p&gt;Copyright © 2016&lt;/p&gt;</code><br />
+                        <img src="images/footer-p.png" alt="Код футера" />
+                    </li>
+                    <li>
+                        Обновить страницу в браузере
+                        <br/>
+                        <img src="images/footer-updated-1.png" alt="Обновлённая страница" />
+                    </li>
+                    <li>
+                        У нас проблема с символом авторских прав <b>&copy;</b>, давайте заменим этот значок на следующий код <code class="html">&amp;copy;</code><br />
+                        <img src="images/footer-updated-2.png" alt="Спецсимвол авторских прав" />
+                    </li>
+                    <li>
+                        Обновить страницу в браузере <br/>
+                        <img src="images/footer-updated-3.png" alt="Правильный текст футера" />
+                    </li>
+                </ol>
+            </div>
+            <h5>CSS</h5>
+            <p>
+                Теперь нам нужно добавить стили для того чтобы футер отображался как на макете.
+            </p>
+            <p>
+                Для этого нам нужно найти в PSD следующие параметры блока:
+            </p>
+            <ul>
+                <li>Размер шрифта</li>
+                <li>Цвет текста</li>
+                <li>Выравнивание текста</li>
+                <li>Максимальная ширина области для текста</li>
+                <li>Отступы в блоке</li>
+            </ul>
+            <h6>Размер шрифта</h6>
+            <div class="task">
+                <h3>Задание #4</h3>
+                <ol>
+                    <li>
+                        Открыть Photoshop и снова выбрать слой с текстом футера и сделать двойной клик на значке <b>T</b> чтобы выделить текст<br />
+                        <img src="images/select-text-in-the-text-layer.png" alt="Выделить текст в текстовом поле" />
+                    </li>
+                    <li>
+                        Посмотреть вверху на панель с информацией о тексте<br />
+                        <img src="images/photoshop-font-properties.png" alt="Параметры текста" /><br />
+                        Обратить внимание на размер шрифта &mdash; <b>16px</b>.
+                    </li>
+                    <li>
+                        Для более полной информации про текст открыть панель <b>Символ</b> <br />
+                        <img src="images/photoshop-font-properties-symbol.png" alt="Параметры символа" />
+                        Здесь видны параметры: размер шрифта, высота строки, цвет.
+                    </li>
+                    <li>
+                        Открыть в редакторе кода файл <b>css/main.css</b> и добавить правило для элемента <b>html</b> &mdash; базовый размер шрифта 10px:
+<pre><code class="css">
+html {
+    font-size: 10px;
+}
+</code></pre>
+                        Теперь можно задавать размер шрифта в единицах <b>rem</b> (работают с Internet Explorer 9 и выше, для более ранних версий IE надо использовать <b>px</b>)
+<pre><code class="css">html {
+    font-size: 10px;
+}
+.footer {
+    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
+    font-size: 1.6rem;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>Мы задали корректный размер шрифта используя единицы <b>rem</b>, а значение размера шрифта взяли из Photoshop-а.</p>
+            <h6>Цвет текста</h6>
+            <div class="task">
+                <h3>Задание #5</h3>
+                <ol>
+                    <li>
+                        Открыть Photoshop и панель <b>Символ</b> и кликнуть на образец цвета
+                        <br />
+                        <img src="images/photoshop-take-text-color.png" alt="Кликнуть на образец цвета" />
+                    </li>
+                    <li>
+                        Скопировать 16-ричное значение цвета в буфер обмена <b>Ctrl C</b>
+                        <br />
+                        <img src="images/photoshop-copy-text-color.png" alt="Скопировать 16-ричное значение цвета в буфер обмена" />
+                    </li>
+                    <li>
+                        Открыть в редакторе кода <b>main.css</b> и добавить цвет текста в футере:
+<pre><code class="css">.footer {
+    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
+    font-size: 1.6rem;
+    <b>color: #666666;</b>
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h6>Выравнивание текста</h6>
+            <div class="task">
+                <h3>Задание #6</h3>
+                <ol>
+                    <li>
+                        Открыть Photoshop и панель <b>Абзац</b> и посмотреть какое выравнивание используется:
+                        <br />
+                        <img src="images/photoshop-copy-text-alignment.png" alt="Выравнивание текста" />
+                        <br/>
+                        Используется выравнивание по центру.
+                    </li>
+                    <li>
+                        Открыть в редакторе кода <b>main.css</b> и добавить выравнивание текста в футере:
+<pre><code class="css">.footer {
+    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
+    font-size: 1.6rem;
+    color: #666666;
+    <b>text-align: center;</b>
+}</code></pre>
+                    </li>
+                    <li>
+                        Теперь в браузере остальные блоки не выровнены, можно добавить временный стиль для выравнивания временных изображений:
+<pre><code class="css">.header, .carousel, .features, .content {
+    text-align: center;
+}</code></pre>
+                        <img src="images/page-footer-1.png" alt="Выравнивание блоков" />
+                    </li>
+                </ol>
+
+            </div>
+            <h6>Максимальная ширина области для текста</h6>
+            <div class="task">
+                <h3>Задание #7</h3>
+                <ol>
+                    <li>
+                        Открыть панель <b>Инфо</b><br />
+                        <img src="images/photoshop-panel-info.png" alt="Панель Info" />
+                    </li>
+                    <li>
+                        Открыть Photoshop и нажать <b>M</b> (режим прямоугольного выделения) и выделить область между внутренними направляющими:
+                        <br />
+                        <img src="images/photoshop-look-at-size.png" alt="Меряем максимальную ширину" />
+                        <br />
+                        Максимальная ширина в макете <b>967px</b>
+                    </li>
+                    <li>
+                        Задать максиальную ширину футера 967px и выравнивание по горизонтали с помощью <b>margin: auto;</b>
+<pre><code class="css">.footer {
+    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
+    font-size: 1.6rem;
+    color: #666666;
+    text-align: center;
+    <b>max-width: 967px;</b>
+    <b>margin: auto;</b>
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h6>Отступы в блоке</h6>
+            <div class="task">
+                <h3>Задание #8</h3>
+                <ol>
+                    <li>
+                        Открыть Photoshop и нажать <b>M</b>, выделить отступ над текстом и запомнить значение, сделать то же самое для отступа снизу.
+                        <br/>
+                        <img src="images/photoshop-footer-padding-top.png" alt="Отступ сверху"/>
+                        <br/>
+                        <img src="images/photoshop-footer-padding-bottom.png" alt="Отступ снизу"/>
+                        <br/>
+                        Отступ сверху и снизу составляет <b>35px</b>
+                        <br/>
+                        Отступы между направляющими составляет 50px &mdash; это отступы слева и справа для футера<br />
+                        <img src="images/photoshop-space.png" alt="Отступ слева и справа"/>
+                    </li>
+                    <li>
+                        Обратить внимание что у нас уже есть отступ у параграфа по умолчанию, чтобы узнать какой это отступ, мы откроем <b>DevTool</b> (панель разработчика)<br />
+                        в браузере Chrome нажмите <b>F12</b> <br/>
+                        При активной вкладке <b>Elements</b> в подвкладке <b>Styles</b> можно увидеть все стили и блочную модель выбранного элемента
+                        <br />
+                        <img src="images/dev-tools-1.png" alt="Панель для разработчика" />
+                        <br/>
+                        Так же панель для разработчика можно вызвать кликнув правой кнопкой над элементом и выбрав <b>Посмотреть код</b>
+                        <br/>
+                        <img src="images/dev-tools-2.png" alt="Панель для разработчика из контекстного меню" />
+                    </li>
+                    <li>
+                        Надо обнулить отступы у параграфов футера <br/>
+                        Добавим следующий код в CSS: <br/>
+<pre><code class="css">.footer p {
+    margin: 0;
+}</code></pre>
+
+                    </li>
+                    <li>
+                        Теперь добавим внутренние отступы для футера
+ <pre><code class="css">.footer {
+     /* 1 rem = 1 размер шрифта элемента HTML = 10px */
+     font-size: 1.6rem;
+     color: #666666;
+     text-align: center;
+     max-width: 967px;
+     margin: auto;
+     <b>padding: 35px 50px;</b>
+ }</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>Давайте уменьшим ширину браузера и посмотрим насколько наш макет адаптивен.</p>
+            <p>Временные изображения не сжимаются давайте снова исправим это добавив в CSS:</p>
+ <pre><code class="css">img {
+     max-width: 100%;
+}</code></pre>
+            <p>
+                Итак первый блок готов.
+            </p>
+            <h4>Content</h4>
+            <h5>HTML</h5>
+            <p>
+                Содержание этого блока это ещё один контейнер, заголовок первого уровня, изображение, заголовок второго уровня и два параграфа.
+            </p>
+            <div class="task">
+                <h3>Задание #9</h3>
+                <ol>
+                    <li>
+                        Заменить временное изображение новым HTML-кодом
+ <pre><code class="html">&lt;div class="content"&gt;
+     &lt;div class="content-inner"&gt;
+         &lt;h1&gt;&lt;/h1&gt;
+         &lt;img class="content-img" src="" alt="Cart" /&gt;
+         &lt;h2&gt;&lt;/h2&gt;
+         &lt;p&gt;&lt;/p&gt;
+         &lt;p&gt;&lt;/p&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>CSS</h5>
+            <p>
+                Необходимо пройти те же шаги что и для футера, максимальную ширину задать для внутреннего блока <b>content-inner</b>, фоновый цвет для самого блока <b>content</b>.
+            </p>
+            <div class="task">
+                <h3>Задание #10</h3>
+                <ol>
+                    <li>
+                        Открыть Photoshop и взять цвет фона блока <b>content</b> &mdash; нажать <b>I</b> и кликнуть на фон блока <b>content</b>
+                        <br />
+                        <img src="images/photoshop-color-pick.png" alt="Взять цвет" />
+                        <br/>
+                        кликнуть на образец цвета и скопировать его в буфер обмена
+                        <br/>
+                        <img src="images/photoshop-color-copy.png" alt="Скопировать цвет" />
+                    </li>
+                    <li>
+                        Вставить цвет фона для блока в CSS:
+ <pre><code class="css">.content {
+    background: #333333;
+ }</code></pre>
+                    </li>
+                    <li>
+                        Сделать экспорт изображения корзины:
+                        <ul>
+                            <li>
+                                Выбрать слой с изображением и нажать на значок глаза зажав клавишу <b>Alt</b> (скрываем все слои кроме выбранного)
+                                <br/>
+                                <img src="images/photoshop-layer-visibility.png" alt="Видимость слоя" />
+                            </li>
+                            <li>
+                                Нажать <b>M</b> выделить область захватывающую изображение и нажать <b>Ctrl C</b> (скопировать в буфер обмена)
+                            </li>
+                            <li>
+                                Нажать <b>Ctrl N</b> чтобы создать новый документ, назвать его <b>cart</b>
+                            </li>
+                            <li>
+                                Вставить в новый документ из буфера обмена изображение нажав <b>Ctrl V</b>
+                            </li>
+                            <li>
+                                Скрыть белый фон, нажав на изобраение глаза рядом со слоем
+                                <br/>
+                                <img src="images/photoshop-layer-bg-hide.png" alt="Скрыть фон" />
+                            </li>
+                            <li>
+                                Нажать <b>Ctrl Alt Shift S</b> (сохранить для веб) и сохранить изображение в формате PNG24 в папке <b>img</b>
+                            </li>
+                            <li>
+                                Добавить путь к изображению в HTML-коде:
+ <pre><code class="html">&lt;div class="content"&gt;
+     &lt;div class="content-inner"&gt;
+         &lt;h1&gt;&lt;/h1&gt;
+         &lt;img class="content-img" src="img/cart.png" alt="Cart" /&gt;
+         &lt;h2&gt;&lt;/h2&gt;
+         &lt;p&gt;&lt;/p&gt;
+         &lt;p&gt;&lt;/p&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Вставить нужный текст для заголовков и параграфов
+                    </li>
+                    <li>
+                        Добавить стили для внутреннего блока <b>container-inner</b>
+                    </li>
+                    <li>
+                        Добавить стили для заголовков и параграфов.
+                    </li>
+                    <li>
+                        Для размещения зображения слева нам понадобится CSS свойство <b>float: left</b>.
+                    </li>
+                </ol>
+            </div>
+            <div class="task">
+                <h3>Задание #11</h3>
+                <ol>
+                    <li>
+                        Добавить HTML код для блока <b>features</b> вместо временного изображения.
+                        <br/>
+                        Это будет список содержащий изображение, подзаголовок и параграф.
+                    </li>
+                    <li>Добавить стили для блока <b>features</b>.</li>
+                </ol>
+            </div>
+            <p>
+                Для упрощения задачи все изображения которые использовались в PSD подготовлены и <a href="img.zip">выложены в архиве</a>.
+            </p>
+            <div class="task">
+                <h3>Задание</h3>
+                <ol>
+                    <li>Продолжить верстать остальные блоки, папку <b>mobi</b> скопировать на FTP в свою подпапку <b>lesson-3</b> либо кинуть в Slack.</li>
+                </ol>
+            </div>
+            <h2>
+                <a id="pseudo-classes" class="anchor" href="https://alekskorovin.github.io/pseudo-positioning-semantic-animation/" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span>Псевдо-классы, псевдо-элементы, флоаты, позиционирование.</a>
+            </h2>
+            <div class="task">
+                <h3>Домашнее задание</h3>
+                <ol>
+                    <li>Пройти курс <b>Селекторы</b> (первую часть) <b>до конца</b>.</li>
+                    <li>Пройти курс <b>Блочная модель документа</b> <b>до "Ширина 100% и ширина по умолчанию"</b>.</li>
+                    <li>Пройти курс <b>Позиционирование</b>.</li>
+                    <li>Кто ещё не отправил &mdash; отправить мне ссылку на свой профиль.</li>
+                </ol>
+            </div>
+
+        </section>
+
+        <aside id="sidebar">
+            <a href="https://github.com/alekskorovin/html-css-practice-1//archive/gh-pages.zip" class="button">
+                <small>Download</small>
+                .zip file
+            </a>
+
+        </aside>
+
+    </div>
+</div>
+
+<script src="javascripts/highlight/highlight.pack.js"></script>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="javascripts/main.js"></script>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/jquery.scrollNav.min.js"></script>
+<script>
+    $('#content-wrapper').scrollNav({
+        sections: 'h2, h3, h4',
+        subSections: true,
+        sectionElem: 'div',
+        showHeadline: true,
+        headlineText: 'Перейти к'
+    });
+</script>
+</body>
+</html>
