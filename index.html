@@ -19,7 +19,7 @@
 <body>
 <header>
     <div class="inner">
-        <h1>Псевдо-классы, псевдо-элементы, флоаты, позиционирование. Практика.</h1>
+        <h1>Обзор новых семантических тегов. Тени, градиенты, простая анимация. Практика.</h1>
         <a href="https://github.com/alekskorovin/html-css-practice-1/" class="button">
             <small>открыть на</small>
             GitHub</a>
@@ -33,505 +33,1212 @@
                 <a id="practice" class="anchor" href="#practice" aria-hidden="true"><span aria-hidden="true"
                                                                                           class="octicon octicon-link"></span>Практика.</a>
             </h2>
+            <h3>Более детальная декомпозиция макета</h3>
+            <h4>Блочность элементов страницы</h4>
+            <p>
+                Все элементы на странице предаставляют собой прямоугольные области. Все видимые составляющие страницы можно представить себе как множество прямоугольников, содержащих внутри себя текст либо другое содержание.
+            </p>
+            <p>
+                Мы можем убедиться в этом добавив всем элементам (используя универсальный селектор) на странице внешнюю рамку CSS-свойством <b>outline</b> (это свойство аналогично свойству <b>border</b> за исключением того что внешняя рамка рисуется за пределами обычной рамки и нельзя применять <b>border-radius</b>)
+            </p>
             <div class="task">
                 <h3>Задание #1</h3>
                 <ol>
-                    <li>Скачать на рабочий стол <a href="mobi.zip">архив "mobi"</a> и разархивировать его &mdash; в дальнейшем мы будем работать с этой заготовкой.</li>
-                    <li>
-                        <a href="fonts/OpenSans-Regular.ttf">Cкачать шрифт OpenSans-Regular.ttf</a> и установить его:<br />
-
-                    </li>
+                    <li>Скачать на рабочий стол <a href="mobi2.zip">архив "mobi2"</a> и разархивировать его &mdash; в дальнейшем мы будем работать с этой заготовкой.</li>
                     <li>
                         Скачать на рабочий стол и открыть <a href="mobi-home-desktop.psd">PSD-макет "mobi-home-desktop.psd"</a> в Photoshop-e.<br />
-                        <img src="images/psd-1.png" alt="Открытый PSD" />
+                    </li>
+                    <li>
+                        Открыть в папке <b>mobi-2</b> подпапку <b>css</b> и в редакторе кода открыть файл <b>main.css</b> и добавить стиль:
+<pre><code class="css">* {
+    outline: solid 1px red;
+}</code></pre>
+                        Открыть страницу <b>index.html</b> из папки <b>mobi2</b> в браузере и убедиться в прямоугольности каждого элемента<br />
+                        <img src="images/rectangles.png" alt="Все элементы на странице прямоугольники"/>
+                    </li>
+                    <li>Открыть инспектор кода (DevTools) нажав <b>F12</b> и нажать на иконку стрелочки (в левом верхнем углу панели). <br />
+                        <img src="images/dev-tools.png" alt="Панель для разработчика" /><br />
+                        Посмотреть стили элементов в панели<br />
+                        <img src="images/element-styles.png" alt="Стили элементов" />
+                    </li>
+                    <li>
+                        Убрать стили для обводки всех элементов:
+<pre><code class="css">* {
+    outline: solid 1px red;
+}</code></pre>
                     </li>
                 </ol>
             </div>
+            <h4>Использование блочности для декомпозиции компонентов дизайна</h4>
             <p>
-                В PSD-макете мы можем видеть дизайн а так же мы можем использовать его чтобы:
+                Мы можем рассмотреть компонент <b>carousel</b> понимая что каждый элемент этого компонента это прямоугольник.
+            </p>
+            <img src="images/carousel-rectangles.png" alt="Компонент Carousel разбитый на элементы-прямоугольники" />
+            <p>
+                Если идти от внешего края компонента к его внутреннему содержанию, можно выделить следующие элементы:
             </p>
             <ul>
                 <li>
-                    Увидеть шрифты которые используются в дизайне.
+                    Общий контейнер карусели с фоном <br/>
+                    <img src="images/carousel-container.png" alt="Контейнер карусели с фоном"/>
+                    <br >
+                    Он содержит размытый фон и лесенку внизу, так же он тянется на всю ширину экрана.
                 </li>
                 <li>
-                    Взять все необходимые размеры, включая отступы, размеры шрифта, высоту строки и прочее.
+                    Внутренний контейнер, с центрированием относительно страницы, подобный футеру, content и features компонентам
+                    <br/>
+                    <img src="images/carousel-container-inner.png" alt="Внутрення часть, слайдер"/>
+                    <br/>
+                    Внутренний контейнер и есть карусель или слайдер внутри которого будут прокручиваться слайды.
                 </li>
                 <li>
-                    Взять все цвета и перенести их в CSS-код.
+                    Сами слайды как правило это элементы списка. Список будет располагаться внутри контейнера.
+                    Мы будем использовать распространённый <b>flexslider</b> в котором заложена следующая структура HTML:
+                    <br/>
+                    <img src="images/flexslider-html.png" alt="Flexslider"/>
+                    <br/>
+                    Вместо изображений у нас будет HTML
                 </li>
                 <li>
-                    Экспортировать все необходимые изображения.
+                    Сам слайд содержащий в себе контейнеры для изображения и контента
+                    <br/>
+                    <img src="images/carousel-slide.png" alt="Слайд"/>
                 </li>
                 <li>
-                    Скопировать весь текст который используется в макете.
+                    Контейнер для размещения изображения. Для примера у нас будет 3 разных слайда с разными изображениями.
+                    <br/>
+                    <img src="images/carousel-slide-image.png" alt="Контейнер для размещения изображения"/>
+                    <br >
+                    Внутри этого контейнера будет находиться полупрозрачное изображение
+                    <img src="images/carousel-slide-content-image.png" alt="Изображение слайда"/>
+                </li>
+                <li>
+                    Контейнер для размещения контента. Для примера у нас будет 3 разных слайда с разным текстом.
+                    <br/>
+                    <img src="images/carousel-slide-content.png" alt="Контейнер для размещения контента"/>
+                </li>
+                <li>
+                    Подзаголовок слайда
+                    <br/>
+                    <img src="images/carousel-slide-content-subtitle.png" alt="Подзаголовок слайда"/>
+                </li>
+                <li>
+                    Параграф текста слайда
+                    <br/>
+                    <img src="images/carousel-slide-content-paragraph.png" alt="Параграф текста слайда"/>
+                </li>
+                <li>
+                    Ссылка на страницу регистрации (sign up)
+                    <br/>
+                    <img src="images/carousel-slide-content-link.png" alt="Ссылка на страницу регистрации (sign up)"/>
+                </li>
+                <li>
+                    Элементы управления каруселью &mdash; стрелки влево и вправо, по нажатию на эти стрелки предполагается:
+                    <ul>
+                        <li><b>влево</b> &mdash; идёт переход к предыдущему элементу (previos)</li>
+                        <li><b>вправо</b> &mdash; идёт переход к следующем элементу (next)</li>
+                    </ul>
+                    <img src="images/carousel-controls.png" alt="Элементы управления каруселью"/>
                 </li>
             </ul>
-            <h3>Декомпозиция макета</h3>
+            <h4>Создание HTML-разметки для компонента carousel</h4>
             <p>
-                Если говорить о базовой структуре страницы, то можно выделить следующие независимые компоненты:
+                Итак мы разбили компонент на составляющие и имеем следующий список:
             </p>
-            <img src="images/psd-decomposition.png" alt="Декомпозиция на компоненты" />
             <ul>
-                <li><b>header</b> &mdash; верхняя часть сайта, хедер, область содержащая логотип и список ссылок.</li>
-                <li><b>carousel</b> &mdash; компонент содержащий список слайдов и навигацию между слайдами.</li>
-                <li><b>features</b> &mdash; список особенностей продукта.</li>
-                <li><b>content</b> &mdash; описание продукта.</li>
-                <li><b>footer</b> &mdash; футер, подвал, область где размещаются копирайты (информация о владельцах этого сайта), дополнительная навигация.</li>
+                <li>Общий контейнер карусели с фоном</li>
+                <li>
+                    Внутренний контейнер, с центрированием относительно страницы
+                </li>
+                <li>
+                    Ненумерованный список содержайщий слайды
+                </li>
+                <li>
+                    Элемент списка &mdash; слайд содержащий в себе контейнеры для изображения и текста
+                </li>
+                <li>
+                    Контейнер для размещения изображения
+                </li>
+                <li>
+                    Изображение
+                </li>
+                <li>
+                    Контейнер для размещения контента
+                </li>
+                <li>
+                    Подзаголовок слайда
+                </li>
+                <li>
+                    Параграф текста слайда
+                </li>
+                <li>Ссылка на страницу регистрации</li>
+                <li>
+                    Элементы управления каруселью &mdash; стрелки влево и вправо
+                </li>
             </ul>
+            <h5>Общий контейнер карусели с фоном</h5>
             <p>
-                Компоненты идущие между хедером и футером обычно объединяют одним контейнером с названием "main".
+                В <b>index.html</b> у нас уже есть контейнер
             </p>
+<pre><code class="html">&lt;div class="carousel"&gt;&lt;/div&gt;</code></pre>
             <p>
-                Давайте сделаем общую структуру и вместо компонентов просто добавим временные картинки с их изображением.
+                Поэтому ничего добавлять не нужно.
             </p>
+            <h5>
+                Внутренний контейнер, с центрированием относительно страницы
+            </h5>
             <div class="task">
                 <h3>Задание #2</h3>
                 <ol>
-                    <li>Открыть в папке <b>mobi</b> файл <b>index.html</b> с помощью редактора и добавить в элемент <b>body</b> следующий HTML-код:
-<pre><code class="html">    &lt;div class="header"&gt;&lt;/div&gt;
-    &lt;div class="main"&gt;
-        &lt;div class="carousel"&gt;&lt;/div&gt;
-        &lt;div class="features"&gt;&lt;/div&gt;
-        &lt;div class="content"&gt;&lt;/div&gt;
+                    <li>Открыть <b>index.html</b> в редакторе кода.</li>
+                    <li>Добавить в контейнер с классом <b>carousel</b> внутренний контейнер с классом <b>carousel-inner</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
     &lt;/div&gt;
-    &lt;div class="footer"&gt;&lt;/div&gt;
-</code></pre>
-                        <p>
-                            Мы добавили контейнеры для наших компонентов. Теперь давайте добавим внутрь контейнеров изображения этих компонентов.
-                        </p>
-                    </li>
-                    <li>
-                        В Photoshop-e в открытом PSD-макете нажать клавишу <b>М</b> (режим прямоугольного выделения) и выделить область хедера потянув с левого верхнего угла до правого нижнего.<br />
-                        <img src="images/copy-picture-of-header.png" alt="Выделяем нужную область" /><br />
-                        Затем:
-                        <ul>
-                            <li>нажать <b>Ctrl Shift C</b> (копировать в буфер объединённые слои).</li>
-                            <li>нажать <b>Ctrl N</b> (создать новый документ) и задать ему имя <b>header</b><br />
-                                <img src="images/create-new-file-header.png" alt="Создать новый файл с именем header" />
-                            </li>
-                            <li>
-                                нажать <b>Ctrl V</b> (вставить из буфера изображение)<br />
-                                <img src="images/paste-header.png" alt="Вставить header" />
-                            </li>
-                            <li>
-                                нажать <b>Ctrl Alt Shift S</b> (сохранить изображения для Веб)<br />
-                                <img src="images/save-header.png" alt="Сохранить для веб" />
-                                выбрать <b>PNG-24</b> и нажать кнопку <b>Save...</b> (сохранить).
-                            </li>
-                            <li>
-                                сохранить изображение в подпапке <b>img</b> вашей папки <b>mobi</b> с названием <b>header.png</b>.
-                            </li>
-                        </ul>
-                        Теперь давайте добавим это изображение внутрь элемента <b>div</b> с классом <b>header</b>.
-                    </li>
-                    <li>
-                        Открыть <b>index.html</b> в редакторе кода и обновить то что внутри <b>body</b>:
-<pre><code class="html">    &lt;div class="header"&gt;&lt;img src="img/header.png" /&gt;&lt;/div&gt;
-    &lt;div class="main"&gt;
-        &lt;div class="carousel"&gt;&lt;/div&gt;
-        &lt;div class="features"&gt;&lt;/div&gt;
-        &lt;div class="content"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="footer"&gt;&lt;/div&gt;
-</code></pre>
-                    </li>
-                    <li>
-                        Открыть <b>index.html</b> в браузере.
-                    </li>
-                    <li>
-                        Проделать тоже самое для:
-                        <ul>
-                            <li>carousel</li>
-                            <li>features</li>
-                            <li>content</li>
-                            <li>footer</li>
-                        </ul>
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
             </div>
+            <h5>
+                Ненумерованный список содержайщий слайды
+            </h5>
             <p>
-                Если возникли проблемы с копированием и сохранением изображений, вот ссылки на сохранённые изображения:
-            </p>
-            <ul>
-                <li><a href="images/header.png">header.png</a></li>
-                <li><a href="images/carousel.png">carousel.png</a></li>
-                <li><a href="images/features.png">features.png</a></li>
-                <li><a href="images/content.png">content.png</a></li>
-                <li><a href="images/footer.png">footer.png</a></li>
-            </ul>
-            <p>В итоге после добавления всех изображений, HTML страница в браузере должна выглядеть так:</p>
-            <img src="images/fake-page.png" alt="Страница с изображениями компонентов" />
-            <p><strong>Какие из этих компонентов мы можем сверстать?</strong></p>
-            <p>Попробуем сверстать два нижних компонента &mdash; <b>footer</b> и <b>content</b>.</p>
-            <h4>footer</h4>
-            <h5>HTML</h5>
-            <p>
-                Очевидно что в блоке <b>footer</b> находится параграф с текстом.
+                Мы добавим ненумерованный список для хранения в нём слайдов и зададим ему CSS-класс <b>carousel-slides</b>.
             </p>
             <div class="task">
                 <h3>Задание #3</h3>
                 <ol>
-                    <li>Открыть Photoshop с открытым PSD-файлом и скопировать текст из слоя с названием <b>Copyright © 2016</b>.</li>
-                    <li>
-                        Чтобы выделять одним кликом по тексту нужный слой в Photoshop-е следует выствить галочку <b>Автовыбор - Слой</b><br/>
-                        <img src="images/autoselect-layer.png" alt="Автовыбор слоя" /><br />
-                        После чего нажать <b>V</b> (режим выбора слоя)  и кликнуть на сам текст<br />
-                        При этом в панели <b>Слои</b> должен выделиться слой с текстом.<br />
-                        <img src="images/selected-text-layer.png" alt="Выделенный слой с текстом" />
-                    </li>
-                    <li>
-                        Сделать двойной клик на значке <b>T</b> чтобы выделить текст<br />
-                        <img src="images/select-text-in-the-text-layer.png" alt="Выделить текст в текстовом поле" />
-                    </li>
-                    <li>
-                        Если появилось сообщение о том, что отсутствует шрифт <b>OpenSans</b><br />
-                        <img src="images/font-replace.png" alt="Замена шрифта" /><br />
-                        Вернуться к заданию #1, установить шрифт, закрыть Photoshop и открыть его снова и октрыть в нём PSD-файл.
-                    </li>
-                    <li>
-                        Когда текст выделился, скопировать его в буфер обмена<br />
-                        <img src="images/footer-text-selected.png" alt="" />
-                    </li>
-                    <li>
-                        Открыть <b>index.html</b> в редакторе кода и заменить изображением в блоке с классом <b>footer</b> <code class="html">&lt;img src="img/footer.png" /&gt;</code> на
-                        параграф <code class="html">&lt;p&gt;&lt;/p&gt;</code>.
-                    </li>
-                    <li>
-                        Вставить из буфера текст внутрь параграфа: <code class="html">&lt;p&gt;Copyright © 2016&lt;/p&gt;</code><br />
-                        <img src="images/footer-p.png" alt="Код футера" />
-                    </li>
-                    <li>
-                        Обновить страницу в браузере
-                        <br/>
-                        <img src="images/footer-updated-1.png" alt="Обновлённая страница" />
-                    </li>
-                    <li>
-                        У нас проблема с символом авторских прав <b>&copy;</b>, давайте заменим этот значок на следующий код <code class="html">&amp;copy;</code><br />
-                        <img src="images/footer-updated-2.png" alt="Спецсимвол авторских прав" />
-                    </li>
-                    <li>
-                        Обновить страницу в браузере <br/>
-                        <img src="images/footer-updated-3.png" alt="Правильный текст футера" />
+                    <li>Добавить в контейнер с классом <b>carousel-inner</b> список для хранения слайдов с классом <b>carousel-slides</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
             </div>
-            <h5>CSS</h5>
+            <h5>
+                Элемент списка — слайд содержащий в себе контейнеры для изображения и текста
+            </h5>
             <p>
-                Теперь нам нужно добавить стили для того чтобы футер отображался как на макете.
+                Это будет обычный элемент ненумерованного списка.
             </p>
-            <p>
-                Для этого нам нужно найти в PSD следующие параметры блока:
-            </p>
-            <ul>
-                <li>Размер шрифта</li>
-                <li>Цвет текста</li>
-                <li>Выравнивание текста</li>
-                <li>Максимальная ширина области для текста</li>
-                <li>Отступы в блоке</li>
-            </ul>
-            <h6>Размер шрифта</h6>
             <div class="task">
                 <h3>Задание #4</h3>
                 <ol>
-                    <li>
-                        Открыть Photoshop и снова выбрать слой с текстом футера и сделать двойной клик на значке <b>T</b> чтобы выделить текст<br />
-                        <img src="images/select-text-in-the-text-layer.png" alt="Выделить текст в текстовом поле" />
-                    </li>
-                    <li>
-                        Посмотреть вверху на панель с информацией о тексте<br />
-                        <img src="images/photoshop-font-properties.png" alt="Параметры текста" /><br />
-                        Обратить внимание на размер шрифта &mdash; <b>16px</b>.
-                    </li>
-                    <li>
-                        Для более полной информации про текст открыть панель <b>Символ</b> <br />
-                        <img src="images/photoshop-font-properties-symbol.png" alt="Параметры символа" />
-                        Здесь видны параметры: размер шрифта, высота строки, цвет.
-                    </li>
-                    <li>
-                        Открыть в редакторе кода файл <b>css/main.css</b> и добавить правило для элемента <b>html</b> &mdash; базовый размер шрифта 10px:
-<pre><code class="css">
-html {
-    font-size: 10px;
-}
-</code></pre>
-                        Теперь можно задавать размер шрифта в единицах <b>rem</b> (работают с Internet Explorer 9 и выше, для более ранних версий IE надо использовать <b>px</b>)
-<pre><code class="css">html {
-    font-size: 10px;
-}
-.footer {
-    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
-    font-size: 1.6rem;
-}</code></pre>
+                    <li>Добавить в список с классом <b>carousel-slides</b> элемент списка.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
             </div>
-            <p>Мы задали корректный размер шрифта используя единицы <b>rem</b>, а значение размера шрифта взяли из Photoshop-а.</p>
-            <h6>Цвет текста</h6>
+            <h5>
+                Контейнер для размещения изображения
+            </h5>
+            <p>
+                Это будет обычный блочный элемент <b>div</b> с классом <b>carousel-img</b>
+            </p>
             <div class="task">
                 <h3>Задание #5</h3>
                 <ol>
-                    <li>
-                        Открыть Photoshop и панель <b>Символ</b> и кликнуть на образец цвета
-                        <br />
-                        <img src="images/photoshop-take-text-color.png" alt="Кликнуть на образец цвета" />
-                    </li>
-                    <li>
-                        Скопировать 16-ричное значение цвета в буфер обмена <b>Ctrl C</b>
-                        <br />
-                        <img src="images/photoshop-copy-text-color.png" alt="Скопировать 16-ричное значение цвета в буфер обмена" />
-                    </li>
-                    <li>
-                        Открыть в редакторе кода <b>main.css</b> и добавить цвет текста в футере:
-<pre><code class="css">.footer {
-    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
-    font-size: 1.6rem;
-    <b>color: #666666;</b>
-}</code></pre>
+                    <li>Добавить в элемент списка блочный элемент с классом <b>carousel-img</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
             </div>
-            <h6>Выравнивание текста</h6>
+            <h5>
+                Изображение
+            </h5>
+            <p>
+                Внутрь контейнера с классом <b>carousel-img</b> добавим изображение телефона.
+            </p>
             <div class="task">
                 <h3>Задание #6</h3>
                 <ol>
-                    <li>
-                        Открыть Photoshop и панель <b>Абзац</b> и посмотреть какое выравнивание используется:
-                        <br />
-                        <img src="images/photoshop-copy-text-alignment.png" alt="Выравнивание текста" />
-                        <br/>
-                        Используется выравнивание по центру.
-                    </li>
-                    <li>
-                        Открыть в редакторе кода <b>main.css</b> и добавить выравнивание текста в футере:
-<pre><code class="css">.footer {
-    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
-    font-size: 1.6rem;
-    color: #666666;
-    <b>text-align: center;</b>
-}</code></pre>
-                    </li>
-                    <li>
-                        Теперь в браузере остальные блоки не выровнены, можно добавить временный стиль для выравнивания временных изображений:
-<pre><code class="css">.header, .carousel, .features, .content {
-    text-align: center;
-}</code></pre>
-                        <img src="images/page-footer-1.png" alt="Выравнивание блоков" />
+                    <li>Добавить в <b>div</b> с классом <b>carousel-img</b> изображение <b>iphone.png</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
-
             </div>
-            <h6>Максимальная ширина области для текста</h6>
+            <h5>
+                Контейнер для размещения контента
+            </h5>
+            <p>
+                После контейнера с классом <b>carousel-img</b> добавим новый блочный элемент с классом <b>carousel-content</b>.
+            </p>
             <div class="task">
                 <h3>Задание #7</h3>
                 <ol>
-                    <li>
-                        Открыть панель <b>Инфо</b><br />
-                        <img src="images/photoshop-panel-info.png" alt="Панель Info" />
-                    </li>
-                    <li>
-                        Открыть Photoshop и нажать <b>M</b> (режим прямоугольного выделения) и выделить область между внутренними направляющими:
-                        <br />
-                        <img src="images/photoshop-look-at-size.png" alt="Меряем максимальную ширину" />
-                        <br />
-                        Максимальная ширина в макете <b>967px</b>
-                    </li>
-                    <li>
-                        Задать максиальную ширину футера 967px и выравнивание по горизонтали с помощью <b>margin: auto;</b>
-<pre><code class="css">.footer {
-    /* 1 rem = 1 размер шрифта элемента HTML = 10px */
-    font-size: 1.6rem;
-    color: #666666;
-    text-align: center;
-    <b>max-width: 967px;</b>
-    <b>margin: auto;</b>
-}</code></pre>
+                    <li>Добавить после <b>div</b>-а с классом <b>carousel-img</b> новый <b>div</b> с классом <b>carousel-content</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
             </div>
-            <h6>Отступы в блоке</h6>
+            <h5>
+                Подзаголовок слайда
+            </h5>
+            <p>
+                Внутрь контейнера с классом <b>carousel-content</b> добавим подзаголовок третьего уровня с текстом из PSD-файла.
+            </p>
             <div class="task">
                 <h3>Задание #8</h3>
                 <ol>
-                    <li>
-                        Открыть Photoshop и нажать <b>M</b>, выделить отступ над текстом и запомнить значение, сделать то же самое для отступа снизу.
-                        <br/>
-                        <img src="images/photoshop-footer-padding-top.png" alt="Отступ сверху"/>
-                        <br/>
-                        <img src="images/photoshop-footer-padding-bottom.png" alt="Отступ снизу"/>
-                        <br/>
-                        Отступ сверху и снизу составляет <b>35px</b>
-                        <br/>
-                        Отступы между направляющими составляет 50px &mdash; это отступы слева и справа для футера<br />
-                        <img src="images/photoshop-space.png" alt="Отступ слева и справа"/>
+                    <li>Добавить внутрь <b>div</b>-а с классом <b>carousel-content</b> подзаголовок третьего уровня <b>h3</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;&lt;/h3&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
-                    <li>
-                        Обратить внимание что у нас уже есть отступ у параграфа по умолчанию, чтобы узнать какой это отступ, мы откроем <b>DevTool</b> (панель разработчика)<br />
-                        в браузере Chrome нажмите <b>F12</b> <br/>
-                        При активной вкладке <b>Elements</b> в подвкладке <b>Styles</b> можно увидеть все стили и блочную модель выбранного элемента
-                        <br />
-                        <img src="images/dev-tools-1.png" alt="Панель для разработчика" />
-                        <br/>
-                        Так же панель для разработчика можно вызвать кликнув правой кнопкой над элементом и выбрав <b>Посмотреть код</b>
-                        <br/>
-                        <img src="images/dev-tools-2.png" alt="Панель для разработчика из контекстного меню" />
-                    </li>
-                    <li>
-                        Надо обнулить отступы у параграфов футера <br/>
-                        Добавим следующий код в CSS: <br/>
-<pre><code class="css">.footer p {
-    margin: 0;
-}</code></pre>
-
-                    </li>
-                    <li>
-                        Теперь добавим внутренние отступы для футера
- <pre><code class="css">.footer {
-     /* 1 rem = 1 размер шрифта элемента HTML = 10px */
-     font-size: 1.6rem;
-     color: #666666;
-     text-align: center;
-     max-width: 967px;
-     margin: auto;
-     <b>padding: 35px 50px;</b>
- }</code></pre>
-                    </li>
+                    <li>Разместить в подзаголовке текст, взятый из PSD-файла.</li>
                 </ol>
             </div>
-            <p>Давайте уменьшим ширину браузера и посмотрим насколько наш макет адаптивен.</p>
-            <p>Временные изображения не сжимаются давайте снова исправим это добавив в CSS:</p>
- <pre><code class="css">img {
-     max-width: 100%;
-}</code></pre>
+            <h5>
+                Параграф текста слайда
+            </h5>
             <p>
-                Итак первый блок готов.
-            </p>
-            <h4>Content</h4>
-            <h5>HTML</h5>
-            <p>
-                Содержание этого блока это ещё один контейнер, заголовок первого уровня, изображение, заголовок второго уровня и два параграфа.
+                Внутрь контейнера с классом <b>carousel-content</b> после подзаголовка добавим параграф с текстом из PSD-файла.
             </p>
             <div class="task">
                 <h3>Задание #9</h3>
                 <ol>
-                    <li>
-                        Заменить временное изображение новым HTML-кодом
- <pre><code class="html">&lt;div class="content"&gt;
-     &lt;div class="content-inner"&gt;
-         &lt;h1&gt;&lt;/h1&gt;
-         &lt;img class="content-img" src="" alt="Cart" /&gt;
-         &lt;h2&gt;&lt;/h2&gt;
-         &lt;p&gt;&lt;/p&gt;
-         &lt;p&gt;&lt;/p&gt;
-     &lt;/div&gt;
- &lt;/div&gt;</code></pre>
+                    <li>Добавить после подзаголовка <b>h3</b> параграф &mdash; элемент <b>p</b> .
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
+                    <li>Разместить в параграфе текст, взятый из PSD-файла.</li>
                 </ol>
             </div>
-            <h5>CSS</h5>
+            <h5>
+                Ссылка на страницу регистрации
+            </h5>
             <p>
-                Необходимо пройти те же шаги что и для футера, максимальную ширину задать для внутреннего блока <b>content-inner</b>, фоновый цвет для самого блока <b>content</b>.
+                Внутрь контейнера с классом <b>carousel-content</b> после параграфа добавим ссылку с атрибутом <b>href="#link"</b> и классом <b>carousel-button</b>.
             </p>
             <div class="task">
                 <h3>Задание #10</h3>
                 <ol>
-                    <li>
-                        Открыть Photoshop и взять цвет фона блока <b>content</b> &mdash; нажать <b>I</b> и кликнуть на фон блока <b>content</b>
-                        <br />
-                        <img src="images/photoshop-color-pick.png" alt="Взять цвет" />
-                        <br/>
-                        кликнуть на образец цвета и скопировать его в буфер обмена
-                        <br/>
-                        <img src="images/photoshop-color-copy.png" alt="Скопировать цвет" />
-                    </li>
-                    <li>
-                        Вставить цвет фона для блока в CSS:
- <pre><code class="css">.content {
-    background: #333333;
- }</code></pre>
-                    </li>
-                    <li>
-                        Сделать экспорт изображения корзины:
-                        <ul>
-                            <li>
-                                Выбрать слой с изображением и нажать на значок глаза зажав клавишу <b>Alt</b> (скрываем все слои кроме выбранного)
-                                <br/>
-                                <img src="images/photoshop-layer-visibility.png" alt="Видимость слоя" />
-                            </li>
-                            <li>
-                                Нажать <b>M</b> выделить область захватывающую изображение и нажать <b>Ctrl C</b> (скопировать в буфер обмена)
-                            </li>
-                            <li>
-                                Нажать <b>Ctrl N</b> чтобы создать новый документ, назвать его <b>cart</b>
-                            </li>
-                            <li>
-                                Вставить в новый документ из буфера обмена изображение нажав <b>Ctrl V</b>
-                            </li>
-                            <li>
-                                Скрыть белый фон, нажав на изобраение глаза рядом со слоем
-                                <br/>
-                                <img src="images/photoshop-layer-bg-hide.png" alt="Скрыть фон" />
-                            </li>
-                            <li>
-                                Нажать <b>Ctrl Alt Shift S</b> (сохранить для веб) и сохранить изображение в формате PNG24 в папке <b>img</b>
-                            </li>
-                            <li>
-                                Добавить путь к изображению в HTML-коде:
- <pre><code class="html">&lt;div class="content"&gt;
-     &lt;div class="content-inner"&gt;
-         &lt;h1&gt;&lt;/h1&gt;
-         &lt;img class="content-img" src="img/cart.png" alt="Cart" /&gt;
-         &lt;h2&gt;&lt;/h2&gt;
-         &lt;p&gt;&lt;/p&gt;
-         &lt;p&gt;&lt;/p&gt;
-     &lt;/div&gt;
- &lt;/div&gt;</code></pre>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        Вставить нужный текст для заголовков и параграфов
-                    </li>
-                    <li>
-                        Добавить стили для внутреннего блока <b>container-inner</b>
-                    </li>
-                    <li>
-                        Добавить стили для заголовков и параграфов.
-                    </li>
-                    <li>
-                        Для размещения зображения слева нам понадобится CSS свойство <b>float: left</b>.
+                    <li>Добавить после параграфа элемент <b>a</b> с атрибутом <b>href="#link"</b> и классом <b>carousel-button</b>.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;/p&gt;
+                    &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
                 </ol>
             </div>
+            <h5>
+                Элементы управления каруселью &mdash; стрелки влево и вправо
+            </h5>
+            <p>
+                Внутрь контейнера с классом <b>carousel-inner</b> после списка слайдов добавим два блочных элемента с классами:
+            </p>
+            <ul>
+                <li><b>carousel-control carousel-prev</b></li>
+                <li><b>carousel-control carousel-next</b></li>
+            </ul>
             <div class="task">
                 <h3>Задание #11</h3>
                 <ol>
-                    <li>
-                        Добавить HTML код для блока <b>features</b> вместо временного изображения.
-                        <br/>
-                        Это будет список содержащий изображение, подзаголовок и параграф.
+                    <li>Добавить после списка с классом <b>carousel-slides</b> два блочных элемента с указанными выше классами.
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;&lt;/h3&gt;
+                    &lt;p&gt;&lt;/p&gt;
+                    &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="carousel-control carousel-prev"&gt;&lt;/div&gt;
+        &lt;div class="carousel-control carousel-next"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                     </li>
-                    <li>Добавить стили для блока <b>features</b>.</li>
                 </ol>
             </div>
             <p>
-                Для упрощения задачи все изображения которые использовались в PSD подготовлены и <a href="img.zip">выложены в архиве</a>.
+                Теперь добавим еще два слайда в список с классом <b>carousel-slides</b> с со следующим содержимым:
             </p>
+<pre><code class="html">&lt;li&gt;
+    &lt;div class="carousel-img"&gt;
+        &lt;img src="img/nexus.png" alt="Nexus" /&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-content"&gt;
+        &lt;h3&gt;Nexus is simply&lt;/h3&gt;
+        &lt;p&gt;
+            dummy text of the&lt;br /&gt;
+            printing &amp; typesetting
+        &lt;/p&gt;
+        &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+    &lt;div class="carousel-img"&gt;
+        &lt;img src="img/mac.png" alt="Mac" /&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-content"&gt;
+        &lt;h3&gt;Mac is simply&lt;/h3&gt;
+        &lt;p&gt;
+            dummy text of the&lt;br /&gt;
+            printing &amp; typesetting
+        &lt;/p&gt;
+        &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+            <div class="task">
+                <h3>Задание #12</h3>
+                <ol>
+                    <li>Добавить в список с классом <b>carousel-slides</b> два новых элемента.
+
+<pre><code class="html">&lt;div class="carousel"&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;ul class="carousel-slides"&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/iphone.png" alt="iPhone" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;Lorem Ipsum is simply &lt;/h3&gt;
+                    &lt;p&gt;
+                        dummy text of the&lt;br /&gt;
+                        printing &amp; typesetting
+                    &lt;/p&gt;
+                    &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/nexus.png" alt="Nexus" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;Nexus is simply&lt;/h3&gt;
+                    &lt;p&gt;
+                        dummy text of the&lt;br /&gt;
+                        printing &amp; typesetting
+                    &lt;/p&gt;
+                    &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="carousel-img"&gt;
+                    &lt;img src="img/mac.png" alt="Mac" /&gt;
+                &lt;/div&gt;
+                &lt;div class="carousel-content"&gt;
+                    &lt;h3&gt;Mac is simply&lt;/h3&gt;
+                    &lt;p&gt;
+                        dummy text of the&lt;br /&gt;
+                        printing &amp; typesetting
+                    &lt;/p&gt;
+                    &lt;a class="carousel-button" href="#link"&gt;Sign up now&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class="carousel-control carousel-prev"&gt;&lt;/div&gt;
+        &lt;div class="carousel-control carousel-next"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>Наш HTML почти готов (мы немного обновим его после подключения плагина Flexslider).</p>
+            <h4>Создание CSS для компонента carousel</h4>
+            <h5>
+                Общий контейнер карусели с фоном
+            </h5>
+            <p>
+                Давайте зададим стили для общего контейнера карусели с фоном. Фон включает в себя два изображения:
+            </p>
+            <ul>
+                <li>
+                    Размытое изображение, растянутое на всю ширину экрана <b>carousel-background.jpg</b>
+                </li>
+                <li>
+                    Узор в виде треугольничка <b>battlement.png</b>, который повторяется по горизонтали внизу над размытым изображением.
+                </li>
+            </ul>
+            <p>Здесь можно использовать одну запись включающую себя оба фона с разными параметрами.</p>
+            <p>Так же мы можем сразу добавить ограничение по высоте для компонента (<b>max-height</b>) и обрезку его содержимого (<b>overflow: hidden;</b> &mdash; обрезает содержимое если задан размер), чтобы он не "прыгал" при загрузке (элементы списка по умолчанию идут один под другим и только после применения скрипта выстраиваются в ряд).</p>
+            <div class="task">
+                <h3>Задание #13</h3>
+                <ol>
+                    <li>Открыть таблицу стилей <b>main.css</b> в редакторе кода.</li>
+                    <li>Добавить пустую строку между комментариями:
+<pre><code class="css">/* =Carousel */
+
+/* Carousel */</code></pre>
+                    </li>
+                    <li>Добавить вместо пустой строки в таблицу стилей <b>main.css</b> правила для класса <b>carousel</b>.
+<pre><code class="css">/* =Carousel */
+.carousel {
+    background: url(../img/battlement.png) repeat-x 0 100%, url(../img/carousel-background.jpg) no-repeat 0 0 fixed;
+    background-size: 12px 8px, 100% 100%;
+    overflow: hidden;
+    max-height: 48.8rem;
+}
+/* Carousel */</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и попробовать поменять её ширину.
+                        Попробовать прокрутить страницу вниз-вверх.
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Весь текст в карусели белый, поэтому можно сразу добавить цвет для текста и для ссылок.
+            </p>
+            <div class="task">
+                <h3>Задание #14</h3>
+                <ol>
+                    <li>Добавить стили задающие цвет текста в карусели.
+<pre><code class="css">/* =Carousel */
+.carousel {
+    background: url(../img/battlement.png) repeat-x 0 100%, url(../img/carousel-background.jpg) no-repeat 0 0 fixed;
+    background-size: 12px 8px, 100% 100%;
+    overflow: hidden;
+    max-height: 48.8rem;
+}
+.carousel,
+.carousel a {
+    color: #fff;
+}
+/* Carousel */</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что цвет поменялся.
+                    </li>
+                </ol>
+            </div>
+            <h5>
+                Внутренний контейнер, с центрированием относительно страницы
+            </h5>
+            <p>
+                Можно добавить селектор <b>.carousel-inner</b> рядом с подобными (.features-list, .footer, .content-inner).
+            </p>
+            <div class="task">
+                <h3>Задание #15</h3>
+                <ol>
+                    <li>Добавить селектор <b>.carousel-inner</b> перед существующими:
+<pre><code class="css">/* =Containers */
+.carousel-inner,
+.features-list,
+.footer,
+.content-inner {
+    max-width: 967px;
+    margin: auto;
+}
+/* Containers */</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что появилось выравнивание относительно страницы.
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Для селектора <b>.carousel-inner</b> стоит добавить внутренние отступы и относительное позиционировани (стрелки влево и вправо будут спозиционированы абсолютно, чтобы мы могли разместить их над каруселью) и максимальную высоту, чтобы стрелки не вылезали за видимую область.
+            </p>
+            <div class="task">
+                <h3>Задание #16</h3>
+                <ol>
+                    <li>Добавить стили для <b>.carousel-inner</b>:
+<pre><code class="css">.carousel-inner {
+    padding: 4rem 0 1rem 0;
+    position: relative;
+    max-height: 43.3rem;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что появились внутренние отступы.
+                    </li>
+                </ol>
+            </div>
+
+            <h5>
+                Ненумерованный список содержайщий слайды, элементы списка и сброс отступов для подзаголовка и параграфа
+            </h5>
+            <p>
+                Для списка (селектор <b>.carousel-slides</b> и его элементов нам стоит сбросить отступы по умолчанию (<b>margin: 0; padding: 0;</b>) и декоративный стиль списка (<b>list-style: none</b>), а так же устранить проблему с "выпаданием" флоатнутых элементов (контейнер с изображеним у нас будет с <b>float: left</b> а контейнер с контентом <b>float: right</b>) &mdash; для этого используем <b>overflow: hidden;</b>.
+            </p>
+            <div class="task">
+                <h3>Задание #17</h3>
+                <ol>
+                    <li>Добавить стили для списка слайдов, его элементов, подзаголовка, параграфа:
+<pre><code class="css">.carousel-slides,
+.carousel-slides li,
+.carousel-slides li > div > * {
+    margin: 0;
+    padding: 0;
+}
+.carousel-slides li {
+    list-style: none;
+    overflow: hidden;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+
+            <h5>
+                Контейнер для размещения изображения
+            </h5>
+            <p>
+                Для контейнера с изображением (селектор <b>.carousel-img</b>) используем свойство <b>float</b> со значением <b>left</b> и зададим ширину рассчитанную из PSD-макета (40%).
+            </p>
+            <div class="task">
+                <h3>Задание #18</h3>
+                <ol>
+                    <li>Добавить стили для контейнера с изображением:
+<pre><code class="css">.carousel-img {
+    float: left;
+    width: 40%;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что теперь текст справа от изображения виден.
+                    </li>
+                </ol>
+            </div>
+
+            <h5>
+                Контейнер для размещения контента
+            </h5>
+            <p>
+                Для контейнера с контентом (селектор <b>.carousel-content</b>) используем свойство <b>float</b> со значением <b>right</b> и зададим ширину рассчитанную из PSD-макета (50%), кроме того зададим внешний отступ сверху, значение так же берётся из макета PSD (12%).
+            </p>
+            <div class="task">
+                <h3>Задание #19</h3>
+                <ol>
+                    <li>Добавить стили для контейнера с контентом:
+<pre><code class="css">.carousel-content {
+    float: right;
+    width: 50%;
+    margin-top: 12%;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что теперь текст справа от изображения виден.
+                    </li>
+                </ol>
+            </div>
+            <h5>
+                Подзаголовок слайда
+            </h5>
+            <p>
+                Для подзаголовка слайда (селектор <b>.carousel-slides h3</b>) зададим размер шрифта взятый из PSD &mdash; это 42px = 4.2rem при рамере шрифта на элементе html 10px.
+            </p>
+            <div class="task">
+                <h3>Задание #20</h3>
+                <ol>
+                    <li>Добавить размер шрифта для подзаголовка слайда 4.2rem:
+<pre><code class="css">.carousel-slides h3 {
+    font-size: 4.2rem;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что подзаголовок изменился.
+                    </li>
+                </ol>
+            </div>
+            <h5>
+                Параграф текста слайда
+            </h5>
+            <p>
+                Для параграфа слайда (селектор <b>.carousel-slides p</b>) зададим размер шрифта взятый из PSD &mdash; это 26px = 2.6rem при рамере шрифта на элементе html 10px, а так же зададим высоту строки, посчитанную так 45/26 = 1.73.
+                <br/>
+                45 - это высота строки, 26 - размер шрифта.
+                <br />
+                <img src="images/calculate-line-height.png" alt="Высота строки"/>
+            </p>
+            <div class="task">
+                <h3>Задание #21</h3>
+                <ol>
+                    <li>Добавить размер шрифта 2.6rem и межстрочное расстояние 1.73 для параграфа слайда:
+<pre><code class="css">.carousel-slides p {
+    font-size: 2.6rem;
+    line-height: 1.73;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что параграф изменился.
+                    </li>
+                </ol>
+            </div>
+            <h5>
+                Ссылка на страницу регистрации
+            </h5>
+            <img src="images/carousel-link.png" alt="Ссылка на страницу регистрации"/>
+            <p>
+                Эта ссылка (селектор <b>.carousel-slides .carousel-button</b> выглядит как кнопка, поэтому зададим следующие стили:
+            </p>
+            <ul>
+                <li>размер шрифта</li>
+                <li>высоту строки (чтобы кнопка была не сильно большой по вертикали)</li>
+                <li>уберём подчёркивание</li>
+                <li>сделаем элемент строчно-блочным, чтобы задать внешний отступ</li>
+                <li>добавим верхний внешний отступ (чтобы кнопка была ниже параграфа)</li>
+                <li>зададим внутренние оступы (чтобы синий фон был на расстоянии от текста, слева он будет больше чтобы текст не налазил на значок, который мы сделаем как псевдо-элемент и спозиционируем его абсолютно над фоном и текстом)</li>
+                <li>зададим цвет фона</li>
+                <li>добавим радиус скругления</li>
+                <li>зададим относительное позиционирование (чтобы раместить значок на абсолютном позиционировании относительно кнопки)</li>
+            </ul>
+            <div class="task">
+                <h3>Задание #22</h3>
+                <ol>
+                    <li>Добавить стили для ссылки:
+<pre><code class="css">.carousel-slides .carousel-button {
+    font-size: 2.2rem;
+    line-height: 1;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 3.4rem;
+    padding: 1.1rem 1.1rem .9rem 4.5rem;
+    background: #5094f2;
+    border-radius: 0.3rem;
+    position: relative;
+}</code></pre>
+                        </li>
+                    </ol>
+                </div>
+            <p>
+                Теперь можно добавить значок псевдоэлементом <b>before</b> (селектор <b>.carousel-slides .carousel-button:before</b>), для него зададим:
+            </p>
+            <ul>
+                <li>обязательное свойство <b>content: ''</b></li>
+                <li>размеры (width, height)</li>
+                <li>фон, возьмём цвет такой же как и у фона кнопки чтобы сделать хороший эффект наведения, ну и сам значок - картинку <b>checkmark.png</b></li>
+                <li>зададим радиус скругления</li>
+                <li>спозиционируем абсолютно</li>
+                <li>разместим слева на расстоянии взятом из макета (1.1rem)</li>
+                <li>сделаем выравнивание по вертикали старинным способом: <b>top: 50%; margin-top: -высота/2</b></li>
+            </ul>
+            <div class="task">
+                <h3>Задание #23</h3>
+                <ol>
+                    <li>Добавить стили для псевдоэлемента <b>before</b> ссылки:
+<pre><code class="css">.carousel-slides .carousel-button:before {
+    content: '';
+    width: 2.7rem;
+    height: 2.7rem;
+    background: #5094f2 url(../img/checkmark.png) no-repeat 50% 50%;
+    border-radius: 50%;
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    margin-top: -1.35rem;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что ссылка изменилась.
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Теперь можно добавить эффект наведения для ссылки поменяв цвета фона и текста на противоположные, используя псевдоселектор <b>hover</b>
+            </p>
+            <div class="task">
+                <h3>Задание #24</h3>
+                <ol>
+                    <li>Добавить стили для эффекта наведения на ссылку:
+<pre><code class="css">.carousel-button:hover {
+    color: #5094f2;
+    background: #fff;
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что при наведении ссылка меняет цвета.
+                    </li>
+                </ol>
+            </div>
+
+            <h5>
+                Элементы управления каруселью &mdash; стрелки влево и вправо
+            </h5>
+            <img src="images/carousel-arrows.png" alt="Элементы управления каруселью"/>
+            <p>
+                Это две стрелки, которые вынесены за пределы блока со слайдами. Обе стрелки находятся на одном уровне по высоте и абсолютно спозиционированны, у них одинаковый размер. Таким образом задав для них один общий класс <b>carousel-control</b> мы можем вынести в него все общие свойства.
+            </p>
+            <ul>
+                <li>абсолютное позиционирование</li>
+                <li>размеры (ширина и высота)</li>
+                <li>выравнивание по вертикали старинным способом: <b>top: 50%; margin-top: -высота/2</b></li>
+                <li>фоновое изображение</li>
+                <li>свойство курсора выглядеть как будто это ссылка (<b>cursor: pointer</b>)</li>
+            </ul>
+            <div class="task">
+                <h3>Задание #25</h3>
+                <ol>
+                    <li>Добавить общие стили для навигации каруселью:
+<pre><code class="css">.carousel-control {
+    position: absolute;
+    width: 2.5rem;
+    height: 6.3rem;
+    top: 50%;
+    margin-top: -3.2rem;
+    background: url(../img/left.png) no-repeat;
+    cursor: pointer;
+}</code></pre>
+                        </li>
+                        <li>
+                            Обновить страницу в браузере и убедиться что стрелка слева появилась.
+                        </li>
+                    </ol>
+                </div>
+            <p>
+                Теперь можно добавить специфичные стили для кнопки с классом <b>carousel-prev</b> (внешний отрицательный отступ -5rem для "вытягивания" элемента влево) и кнопки с классом <b>carousel-next</b> (выравнивание по правому краю и отрицательный внешний отступа справа -5rem для "вытягивания" элемента за пределы центрируемой области. Так же мы можем не использовать изображение со стрелкой вправо, а используя CSS "развернуть" стрелку на 180 градусов.
+            </p>
+            <div class="task">
+                <h3>Задание #26</h3>
+                <ol>
+                    <li>Добавить стили для элементов <b>carousel-prev</b> и <b>carousel-next</b>:
+<pre><code class="css">.carousel-prev {
+    margin-left: -5rem;
+}
+.carousel-next {
+    right: 0;
+    margin-right: -5rem;
+    transform: rotate(180deg);
+}</code></pre>
+                    </li>
+                    <li>
+                        Обновить страницу в браузере и убедиться что обе стрелки на месте.
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Теперь можно добавить JavaScript который оживит нашу карусель. Для начала мы подключим библиотеку <b>jQuery</a></b> и <b>Flexslider</b>.
+            </p>
+            <div class="task">
+                <h3>Задание #27</h3>
+                <ol>
+                    <li>
+                        Открыть <b>index.html</b> и добавить следующий код перед закрывающим тегом <b>body</b>:
+<pre><code class="html">&lt;script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://flexslider.woothemes.com/js/jquery.flexslider.js"&gt;&lt;/script&gt;
+</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Для того чтобы карусель (слайдер) <b>Flexslider</b> заработал, в HTML надо добавить пару CSS-классов:
+            </p>
+            <ul>
+                <li> для блока с классом <b>carousel-inner</b> добавить дополнительный класс <b>flexslider</b></li>
+                <li> для блока с классом <b>carousel-slides</b> добавить дополнительный класс <b>slides</b></li>
+            </ul>
+            <div class="task">
+                <h3>Задание #28</h3>
+                <ol>
+                    <li>
+                        Открыть <b>index.html</b> и добавить классы как описано выше:
+<pre><code class="html">&lt;div class="carousel-inner flexslider"&gt;
+    &lt;ul class="carousel-slides slides"&gt;
+</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Теперь остаётся добавить скрипт который запустит карусель с нужными нам параметрами:
+            </p>
+            <ul>
+                <li>типа анимации "slide" &mdash; элементы "выезжают" справа налево</li>
+                <li>выключим стандартную навигацию влево-вправо</li>
+                <li>выключим навигацию по каждому слайду (кружочки внизу)</li>
+                <li>добавим управление на собственные кнопки с классами <b>carousel-prev</b> и <b>carousel-next</b></li>
+            </ul>
+            <div class="task">
+                <h3>Задание #29</h3>
+                <ol>
+                    <li>
+                        В <b>index.html</b> после добавленых скриптов и перед закрывающим тегом <b>body</b> добавить скрипт "оживляющий" карусель:
+<pre><code class="html">&lt;script&gt;
+    (function() {
+        $(window).load(function() {
+            var $flexslider = $('.flexslider');
+            $flexslider.flexslider({
+                animation: "slide",
+                directionNav: false,
+                controlNav: false
+            });
+            $('.carousel-prev').click(function(){
+                $flexslider.flexslider('prev');
+            });
+            $('.carousel-next').click(function(){
+                $flexslider.flexslider('next');
+            });
+        });
+    })();
+&lt;/script&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+
+
+
+            <h4>Использование блочности для декомпозиции элементов хедера</h4>
+            <p>
+                Мы можем рассмотреть компонент <b>header</b> понимая что каждый элемент этого компонента это прямоугольник.
+            </p>
+            <img src="images/header.png" alt="Хедер и его составляющие"/>
+            <p>
+               Можно выделить следующие элементы:
+            </p>
+            <ul>
+                <li>
+                    Общий контейнер хедера с выравниванием как у футера, компонентов content, features и carousel <br/>
+                    <img src="images/header-container.png" alt="Общий контейнер хедера"/>
+                </li>
+                <li>
+                    Ссылка на главную страницу содержащая изображение логотипа
+                    <br/>
+                    <img src="images/header-logo-link.png" alt="Ссылка с логотипом"/>
+                </li>
+                <li>
+                    Изображение логотипа
+                    <br/>
+                    <img src="images/header-logo.png" alt="Логотип"/>
+                </li>
+                <li>
+                    Горизонтальное меню &mdash; список со ссылками на другие страницы сайта
+                    <br/>
+                    <img src="images/header-list.png" alt="Горизонтальное меню &mdash; список со ссылками на другие страницы сайта"/>
+                </li>
+                <li>
+                    Элементы меню
+                    <br/>
+                    <img src="images/header-list-items.png" alt="Элементы меню"/>
+                </li>
+                <li>
+                    Ссылки на другие страницы сайта
+                    <br/>
+                    <img src="images/header-links.png" alt="Ссылки на другие страницы сайта"/>
+                </li>
+            </ul>
+            <h4>Создание HTML-разметки для компонента header</h4>
+            <h5>
+                Контейнер, с центрированием относительно страницы
+            </h5>
+            <p>
+                У нас уже есть блок с классом <b>header</b> его можно использовать для центрирования, однако следует добавить <b>clearfix</b> для него, чтобы флоатнутые элементы - логотип и навигация не "выпадали" из него.
+            </p>
+            <div class="task">
+                <h3>Задание #2.1</h3>
+                <ol>
+                    <li>Открыть <b>index.html</b> в редакторе кода.</li>
+                    <li>Добавить в контейнер с классом <b>header</b> дополнительный класс <b>clearfix</b>.
+<pre><code class="html">&lt;div class="header"&gt;
+    &lt;a class="header-logo" href="index.html"&gt;&lt;/a&gt;
+    &lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Ссылка на главную страницу содержащая изображение логотипа</h5>
+            <p>
+                Следует добавть ссылку с классом <b>header-logo</b> ведущую на <b>index.html</b>.
+            </p>
+            <div class="task">
+                <h3>Задание #2.2</h3>
+                <ol>
+                    <li>Открыть <b>index.html</b> в редакторе кода.</li>
+                    <li>Добавить в контейнер с классом <b>header</b> ссылку с классом <b>header-logo</b>.
+<pre><code class="html">&lt;div class="header"&gt;
+    &lt;a class="header-logo" href="index.html"&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Изображение логотипа</h5>
+            <p>
+                Внутрь ссылки с классом <b>header-logo</b> добавим изображение <b>header-logo.png</b> с размерами взятыми из PSD и добавим текстовое описание "Mobi".
+            </p>
+            <div class="task">
+                <h3>Задание #2.3</h3>
+                <ol>
+                    <li>Добавить в ссылку с классом <b>header-logo</b> изображение <b>header-logo.png</b>.
+<pre><code class="html">&lt;div class="header"&gt;
+    &lt;a class="header-logo"&gt;&lt;img src="img/logo.png" width="155" height="44" alt="Mobi" /&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                    </li>
+                    <li>Обновить страницу в браузере и убедиться что изображение отображается</li>
+                </ol>
+            </div>
+            <h5>Горизонтальное меню &mdash; список со ссылками на другие страницы сайта</h5>
+            <p>
+                Это обычный ненумерованный список.
+            </p>
+            <div class="task">
+                <h3>Задание #2.4</h3>
+                <ol>
+                    <li>Добавить в блок с классом <b>header</b> список с классом <b>header-menu</b>.
+<pre><code class="html">&lt;div class="header"&gt;
+    &lt;a class="header-logo"&gt;&lt;img src="img/logo.png" width="155" height="44" alt="Mobi" /&gt;&lt;/a&gt;
+    &lt;ul class="header-menu"&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Элементы меню</h5>
+            <p>
+                Это обычные элементы ненумерованного списка, за исключением одного элемента, с индикацией активной страницы (второй пункт списка), его мы обозначим специальным классом <b>active</b>.
+            </p>
+            <div class="task">
+                <h3>Задание #2.5</h3>
+                <ol>
+                    <li>Добавить в список с классом <b>header-menu</b> элементы списка и второй из них с классом <b>active</b>.
+<pre><code class="html">&lt;div class="header"&gt;
+    &lt;a class="header-logo"&gt;&lt;img src="img/logo.png" width="155" height="44" alt="Mobi" /&gt;&lt;/a&gt;
+    &lt;ul class="header-menu"&gt;
+        &lt;li&gt;&lt;/li&gt;
+        &lt;li class="active"&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Ссылки на другие страницы сайта</h5>
+            <p>
+                Это обычные ссылки которые размещаются внтури элементов списка.
+            </p>
+            <div class="task">
+                <h3>Задание #2.6</h3>
+                <ol>
+                    <li>Добавить в элементы списка с классом <b>header-menu</b> ссылки.
+<pre><code class="html">&lt;div class="header"&gt;
+    &lt;a class="header-logo"&gt;&lt;img src="img/logo.png" width="155" height="44" alt="Mobi" /&gt;&lt;/a&gt;
+    &lt;ul class="header-menu"&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="active"&gt;&lt;a href="#link"&gt;Products&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#link"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#link"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h4>Создание CSS для компонента header</h4>
+            <h5>Общий контейнер хедера</h5>
+            <p>
+                Селектор общего контейнера хедера <b>.header</b> имеет смысл добавить рядом с остальными селекторами для правила по выравниванию относительно страницы
+            </p>
+            <div class="task">
+                <h3>Задание #2.7</h3>
+                <ol>
+                    <li>Добавить селектор <b>.header</b> к остальным селекторам.
+<pre><code class="css">.header,
+.carousel-inner,
+.features-list,
+.footer,
+.content-inner {
+    max-width: 967px;
+    margin: auto;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>
+                Для блока <b>.header</b> можно задать внутренний отступ (чтобы сдвинуть логотип и пункты меню ниже края окна) и минимальную высоту (чтобы задать размер хедера как в дизайне)
+            </p>
+            <div class="task">
+                <h3>Задание #2.8</h3>
+                <ol>
+                    <li>Добавить правило для селектора <b>.header</b>
+<pre><code class="css">/* =Header */
+.header {
+    padding: 2.5rem 0 0 0;
+    min-height: 6.5rem;
+}
+/* Header */</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Ссылка на главную страницу</h5>
+            <p>
+                Ссылку на главную страницу (селектор <b>.header-logo</b>) можно сделать блочным элементом флоатнутым влево а так же задать ширину взятую из PSD-файла.
+            </p>
+            <div class="task">
+                <h3>Задание #2.9</h3>
+                <ol>
+                    <li>Добавить правило для селектора <b>.header-logo</b> задающее ширину и флоат влево.
+<pre><code class="css">.header-logo {
+    float: left;
+    width: 15.5rem;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Горизонтальное меню &mdash; список со ссылками на другие страницы сайта</h5>
+            <p>
+                Для ненумерованного списка и его элементов (селектор <b>.header-menu</b> имеет смысл сбросить декоративный стиль (<b>list-style: none</b>), обнулить внешние отступы, затем для списка задать размер шрифта 0 чтобы избежать проблемы со строчно-блочными элеметами (элементы списка мы сделаем строчно-блочными, по умолчанию у них есть горизонтальный внешний отступ 4px, font-size: 0 на контейнере убирает его) и сделать этому списку флоат со значением <b>right</b>.
+            </p>
+            <div class="task">
+                <h3>Задание #2.10</h3>
+                <ol>
+                    <li>Добавить правило для списка <b>.header-menu</b>:
+<pre><code class="css">.header-menu,
+.header-menu li {
+    list-style: none;
+    margin: 0;
+}
+.header-menu {
+    float: right;
+    font-size: 0;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Элементы меню</h5>
+            <p>
+                Элементы меню (селектор <b>.header-menu li </b>) мы сделаем строчно-блочными с внешним отступом слева взятым из PSD 2rem и белой нижней рамкой с размером 3px (взято из PSD) &mdash; когда элемент с классом <b>aсtive</b> цвет рамки будет голубым, как сделано в дизайне для второго пункта.
+            </p>
+            <div class="task">
+                <h3>Задание #2.11</h3>
+                <ol>
+                    <li>Добавить правило для элементов списка <b>.header-menu li</b> и с классом <b>active</b> <b>.header-menu li.active</b>:
+<pre><code class="css">.header-menu li {
+    margin-left: 4rem;
+    display: inline-block;
+    border-bottom: solid 3px #fff;
+}
+.header-menu li.active {
+    border-color: #5094f2;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <h5>Ссылки на другие страницы сайта</h5>
+            <p>
+                Для ссылок навигации (селектор <b>.header-menu a</b>) следует задать цвет, размер шрифта, высоту строки, убрать подчёркивание, сделать ссылки строчно-блочными элементамии и добавить внутренний отступ. Кроме того можно сразу задать другой цвет с помощью псевдоселектора <b>:hover</b> для ссылок при наведении.
+            </p>
+            <div class="task">
+                <h3>Задание #2.12</h3>
+                <ol>
+                    <li>Добавить правило для ссылок навигации <b>.header-menu a</b>:
+<pre><code class="css">.header-menu a {
+    color: #6c6c6c;
+    font-size: 2rem;
+    line-height: 1;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2.5rem 0 1.7rem 0;
+}
+.header-menu a:hover {
+    color: #5094f2;
+}</code></pre>
+                    </li>
+                </ol>
+            </div>
+
+            <h2>
+                <a id="animation" class="anchor" href="https://alekskorovin.github.io/pseudo-positioning-semantic-animation/" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span>Обзор новых семантических тегов. Тени, градиенты, простая анимация.</a>
+            </h2>
+            <h3>
+                Трансформации
+            </h3>
+            <p>
+                Полезныем материалы по CSS-трансформациям:
+            </p>
+            <ul>
+                <li>
+                    <a href="http://html5book.ru/css3-transform/">CSS3 трансформации</a>
+                </li>
+                <li>
+                    <a href="http://css.yoksel.ru/transform/">Transform</a>
+                </li>
+                <li>
+                    <a href="http://css.yoksel.ru/pages/transform-functions/">Функции Transform</a>
+                </li>
+            </ul>
+
             <div class="task">
                 <h3>Задание</h3>
                 <ol>
-                    <li>Продолжить верстать остальные блоки, папку <b>mobi</b> скопировать на FTP в свою подпапку <b>lesson-3</b> либо кинуть в Slack.</li>
+                    <li>Что можно улучшить в текущей вёрстке используя семантические теги?</li>
                 </ol>
             </div>
-            <h2>
-                <a id="pseudo-classes" class="anchor" href="https://alekskorovin.github.io/pseudo-positioning-semantic-animation/" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span>Псевдо-классы, псевдо-элементы, флоаты, позиционирование.</a>
-            </h2>
+
             <div class="task">
                 <h3>Домашнее задание</h3>
                 <ol>
-                    <li>Пройти курс <b>Селекторы</b> (первую часть) <b>до конца</b>.</li>
-                    <li>Пройти курс <b>Блочная модель документа</b> <b>до "Ширина 100% и ширина по умолчанию"</b>.</li>
-                    <li>Пройти курс <b>Позиционирование</b>.</li>
+                    <li>Пройти курс <b>Ссылки и изображения</b>.</li>
+                    <li>Пройти курс <b>Сетки</b> <b>до "Сетка посложнее, добавляем содержание"</b>.</li>
+                    <li>Пройти курс <b>Мастерская: создаём меню</b> <b>до "Что делать, если пункты не влезают?"</b>.</li>
                     <li>Кто ещё не отправил &mdash; отправить мне ссылку на свой профиль.</li>
                 </ol>
             </div>
