@@ -2,50 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bac11960-31f3-4c94-84b9-6c88fd5809b7" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\autoselect-layer.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\carousel.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\content.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\copy-picture-of-header.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\create-new-file-header.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\dev-tools-1.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\dev-tools-2.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\fake-page.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\features.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\font-replace.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\footer-p.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\footer-text-selected.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\footer-updated-1.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\footer-updated-2.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\footer-updated-3.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\footer.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\highlight-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\install-font.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\page-footer-1.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\paste-header.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-color-copy.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-color-pick.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-copy-text-alignment.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-copy-text-color.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-font-properties-symbol.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-font-properties.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-footer-padding-bottom.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-footer-padding-top.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-layer-bg-hide.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-layer-visibility.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-look-at-size.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-panel-info.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-space.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\photoshop-take-text-color.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\psd-1.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\psd-decomposition.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\save-header.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\select-text-in-the-text-layer.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\images\selected-text-layer.png" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\img.zip" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\mobi.zip" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\train\lesson-5-6\src\psd-1.psd" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/header.png" afterPath="$PROJECT_DIR$/images/header.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,8 +26,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24524313">
-              <caret line="1174" column="18" selection-start-line="1174" selection-start-column="18" selection-end-line="1174" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.33293697">
+              <caret line="535" column="20" selection-start-line="535" selection-start-column="15" selection-end-line="535" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -96,10 +53,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="268" />
-    <option name="width" value="1931" />
-    <option name="height" value="691" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1932" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -124,6 +81,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -172,8 +131,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -192,11 +149,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="268" width="1931" height="691" extended-state="0" />
+    <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2522715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25747862" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -233,8 +190,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24524313">
-          <caret line="1174" column="18" selection-start-line="1174" selection-start-column="18" selection-end-line="1174" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33293697">
+          <caret line="535" column="20" selection-start-line="535" selection-start-column="15" selection-end-line="535" selection-end-column="20" />
           <folding />
         </state>
       </provider>
